@@ -4,6 +4,7 @@ import 'package:develop_design_system/DesignSystem/Components/InputField/input_t
 import 'package:develop_design_system/DesignSystem/Components/InputField/input_text_view_model.dart';
 import 'package:develop_design_system/DesignSystem/Components/LinkedLabel/linked_label.dart';
 import 'package:develop_design_system/DesignSystem/Components/LinkedLabel/linked_label_view_model.dart';
+import 'package:develop_design_system/Views/Signup/signup.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -29,12 +30,12 @@ class _LoginPageState extends State<LoginPage> {
             Container(
               margin: const EdgeInsets.only(bottom: 32),
               decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(24.0),
+                borderRadius: BorderRadius.circular(24.0),
               ),
               clipBehavior: Clip.hardEdge,
               child: Image.asset(
-              'assets/148x148.png',
-              fit: BoxFit.cover,
+                'assets/148x148.png',
+                fit: BoxFit.cover,
               ),
             ),
             const SizedBox(height: 64,),
@@ -112,7 +113,10 @@ class _LoginPageState extends State<LoginPage> {
                   size: ActionButtonSize.small,
                   text: 'Sign Up',
                   onPressed: () {
-                    print('Sign Up');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SignUpPage())
+                    );        
                   }
                 ),
               ),
