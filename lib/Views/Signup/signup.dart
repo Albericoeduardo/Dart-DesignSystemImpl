@@ -4,19 +4,21 @@ import 'package:develop_design_system/DesignSystem/Components/InputField/input_t
 import 'package:develop_design_system/DesignSystem/Components/InputField/input_text_view_model.dart';
 import 'package:develop_design_system/DesignSystem/Components/LinkedLabel/linked_label.dart';
 import 'package:develop_design_system/DesignSystem/Components/LinkedLabel/linked_label_view_model.dart';
-import 'package:develop_design_system/Views/Signup/signup.dart';
+import 'package:develop_design_system/Views/Login/login.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  bool acceptedTerms = false;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Image.asset(
                 'assets/148x148.png',
                 fit: BoxFit.cover,
-              ),
+              )
             ),
             const SizedBox(height: 64,),
             StyledInputField.instantiate(
@@ -60,25 +62,38 @@ class _LoginPageState extends State<LoginPage> {
                 controller: passwordController,
                 placeholder: 'Password',
                 password: true,
-                suffixIcon: const Icon(Icons.remove_red_eye),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Esse campo é obrigatório';
+                  } else if (value.length < 6) {
+                    return 'A senha deve ter no mínimo 6 caracteres';
                   }
                   return null;
                 }
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                Checkbox(
+                  value: acceptedTerms,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  checkColor: Colors.transparent,
+                  onChanged: (value) {
+                    setState(() {
+                      acceptedTerms = value!;
+                    });
+                  }
+                ),
                 LinkedLabel.instantiate(
                   viewModel: LinkedLabelViewModel(
-                    fullText: 'Forgot Password',
-                    linkedText: 'Forgot Password',
+                    fullText: 'I have read and agree Terms & Services',
+                    linkedText: 'Terms & Services',
                     onLinkTap: () {
-                      print('Esqueceu a senha?');
+                      print('Tudo liberado!');
                     }
                   ),
                 ),
@@ -89,15 +104,15 @@ class _LoginPageState extends State<LoginPage> {
               viewModel: ActionButtonViewModel(
                 style: ActionButtonStyle.primary,
                 size: ActionButtonSize.large,
-                text: 'Login',
+                text: 'Sign Up',
                 onPressed: () {
-                  print('Entrar');
+                  print('Cadastrado!');
                 }
-              ),
+              )
             ),
             const SizedBox(height: 96),
             const Text(
-              'Don\'t Have An Account?',
+              'Already Have An Account?',
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.black,
@@ -111,12 +126,12 @@ class _LoginPageState extends State<LoginPage> {
                 viewModel: ActionButtonViewModel(
                   style: ActionButtonStyle.primary,
                   size: ActionButtonSize.small,
-                  text: 'Sign Up',
+                  text: 'Login',
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const SignUpPage())
-                    );        
+                      MaterialPageRoute(builder: (context) => const LoginPage())
+                    );
                   }
                 ),
               ),
