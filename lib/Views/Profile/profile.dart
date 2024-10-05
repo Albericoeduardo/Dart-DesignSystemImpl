@@ -1,3 +1,5 @@
+import 'package:develop_design_system/DesignSystem/Components/BottomTabBar/bottom_tab_bar.dart';
+import 'package:develop_design_system/DesignSystem/Components/BottomTabBar/bottom_tab_bar_view_model.dart';
 import 'package:develop_design_system/DesignSystem/shared/styles.dart';
 import 'package:develop_design_system/Views/Login/login.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,7 @@ class ProfilePage extends StatelessWidget {
           fontSize: 34,
           fontWeight: FontWeight.bold,
         ),
+        titleSpacing: 30,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -114,6 +117,29 @@ class ProfilePage extends StatelessWidget {
             )
           ],
         ),
+      ),
+      bottomNavigationBar: BottomTabBar.instantiate(
+        currentIndex: 3,
+        viewModel: BottomTabBarViewModel(
+          bottomTabs: [
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "Home",
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.message),
+              label: "Messages",
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.label),
+              label: "Label",
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: "Profile",
+            )
+          ],
+        )
       ),
     );
   }
