@@ -37,4 +37,7 @@ This section highlights the pages developed based on the wireframe.
 ## SignUp Page [(code)](https://github.com/Albericoeduardo/Dart-DesignSystemImpl/blob/main/lib/Views/Signup/signup.dart)
 ![image](https://github.com/user-attachments/assets/a31973ca-da51-4504-a03a-1f7195f60f73)
 
+## Profile Page [(code)](https://github.com/Albericoeduardo/Dart-DesignSystemImpl/blob/main/lib/Views/Profile/profile.dart)
+![image](https://github.com/user-attachments/assets/e2000255-4e98-4dae-9e05-fd2983ee768a)
+
 
