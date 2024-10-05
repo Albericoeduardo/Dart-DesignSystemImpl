@@ -4,6 +4,7 @@ import 'package:develop_design_system/DesignSystem/Components/InputField/input_t
 import 'package:develop_design_system/DesignSystem/Components/InputField/input_text_view_model.dart';
 import 'package:develop_design_system/DesignSystem/Components/LinkedLabel/linked_label.dart';
 import 'package:develop_design_system/DesignSystem/Components/LinkedLabel/linked_label_view_model.dart';
+import 'package:develop_design_system/Views/Profile/profile.dart';
 import 'package:develop_design_system/Views/Signup/signup.dart';
 import 'package:flutter/material.dart';
 
@@ -91,7 +92,10 @@ class _LoginPageState extends State<LoginPage> {
                 size: ActionButtonSize.large,
                 text: 'Login',
                 onPressed: () {
-                  print('Entrar');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ProfilePage())
+                  );
                 }
               ),
             ),

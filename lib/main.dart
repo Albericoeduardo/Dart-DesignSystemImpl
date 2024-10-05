@@ -1,4 +1,3 @@
-import 'package:develop_design_system/Views/Profile/profile.dart';
 import 'package:develop_design_system/Views/Signup/signup.dart';
 import 'package:flutter/material.dart';
 
@@ -11,10 +10,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       color: Colors.white,
-      home: ProfilePage()
+      home: SignUpPage()
       );
   }
 }

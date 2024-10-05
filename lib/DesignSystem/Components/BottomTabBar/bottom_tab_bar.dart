@@ -5,10 +5,10 @@ class BottomTabBar extends StatelessWidget {
   final BottomTabBarViewModel viewModel;
   final int currentIndex;
 
-  const BottomTabBar._({super.key, required this.viewModel, required this.currentIndex}); // Atualizei aqui
+  const BottomTabBar._({super.key, required this.viewModel, required this.currentIndex});
 
   static Widget instantiate({required BottomTabBarViewModel viewModel, required int currentIndex}) {
-    return BottomTabBar._(viewModel: viewModel, currentIndex: currentIndex); // Atualizei aqui
+    return BottomTabBar._(viewModel: viewModel, currentIndex: currentIndex);
   }
 
   @override
@@ -17,7 +17,7 @@ class BottomTabBar extends StatelessWidget {
       items: viewModel.bottomTabs,
       type: BottomNavigationBarType.fixed,
       selectedItemColor: darkPrimaryBrandColor,
-      unselectedItemColor: lightPrimaryBaseColorLight,
+      unselectedItemColor: darkPrimaryBaseColorLight,
       showUnselectedLabels: true,
       currentIndex: currentIndex,
       onTap: viewModel.onIndexChanged,

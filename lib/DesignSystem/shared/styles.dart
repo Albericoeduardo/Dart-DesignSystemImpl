@@ -62,7 +62,7 @@ const TextStyle paragraph1Regular = TextStyle(
   fontFamily: 'Inter',
   fontSize: 15,
   fontWeight: FontWeight.w400,
-  color: normalPrimaryBaseColorLight,
+  color: darkPrimaryBaseColorLight,
   letterSpacing: 0.5
 );
 
