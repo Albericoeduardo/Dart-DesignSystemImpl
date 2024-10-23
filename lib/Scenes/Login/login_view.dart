@@ -4,8 +4,8 @@ import 'package:develop_design_system/DesignSystem/Components/InputField/input_t
 import 'package:develop_design_system/DesignSystem/Components/InputField/input_text_view_model.dart';
 import 'package:develop_design_system/DesignSystem/Components/LinkedLabel/linked_label.dart';
 import 'package:develop_design_system/DesignSystem/Components/LinkedLabel/linked_label_view_model.dart';
-import 'package:develop_design_system/Views/Profile/profile.dart';
-import 'package:develop_design_system/Views/Signup/signup.dart';
+import 'package:develop_design_system/Scenes/Login/login_router.dart';
+import 'package:develop_design_system/Scenes/Login/login_service.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -91,11 +91,19 @@ class _LoginPageState extends State<LoginPage> {
                 style: ActionButtonStyle.primary,
                 size: ActionButtonSize.large,
                 text: 'Login',
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ProfilePage())
+                isLoading: false,
+                onPressed: () async {
+                  try {
+                    // ignore: unused_local_variable
+                    Map<String, dynamic> userData = await LoginService.fetchLogin(
+                    emailController.text,
+                    passwordController.text,
                   );
+                  // ignore: use_build_context_synchronously
+                  LoginPageRouter.goToProfilePage(context, emailController.text);
+                  } catch (e) {
+                    //ERRO
+                  }
                 }
               ),
             ),
@@ -116,11 +124,9 @@ class _LoginPageState extends State<LoginPage> {
                   style: ActionButtonStyle.primary,
                   size: ActionButtonSize.small,
                   text: 'Sign Up',
+                  isLoading: false,
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const SignUpPage())
-                    );        
+                     LoginPageRouter.goToSignupPage(context);
                   }
                 ),
               ),

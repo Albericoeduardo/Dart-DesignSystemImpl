@@ -4,7 +4,7 @@ import 'package:develop_design_system/DesignSystem/Components/InputField/input_t
 import 'package:develop_design_system/DesignSystem/Components/InputField/input_text_view_model.dart';
 import 'package:develop_design_system/DesignSystem/Components/LinkedLabel/linked_label.dart';
 import 'package:develop_design_system/DesignSystem/Components/LinkedLabel/linked_label_view_model.dart';
-import 'package:develop_design_system/Views/Login/login.dart';
+import 'package:develop_design_system/Scenes/Signup/signup_router.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -105,6 +105,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 style: ActionButtonStyle.primary,
                 size: ActionButtonSize.large,
                 text: 'Sign Up',
+                isLoading: false,
                 onPressed: () {
                   print('Cadastrado!');
                 }
@@ -127,11 +128,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   style: ActionButtonStyle.primary,
                   size: ActionButtonSize.small,
                   text: 'Login',
+                  isLoading: false,
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const LoginPage())
-                    );
+                    SignupPageRouter.login(context);
                   }
                 ),
               ),

@@ -1,4 +1,4 @@
-import 'package:develop_design_system/Views/Signup/signup.dart';
+import 'package:develop_design_system/Scenes/Signup/signup_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {

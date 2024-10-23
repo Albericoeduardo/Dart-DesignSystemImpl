@@ -1,11 +1,12 @@
 import 'package:develop_design_system/DesignSystem/Components/BottomTabBar/bottom_tab_bar.dart';
 import 'package:develop_design_system/DesignSystem/Components/BottomTabBar/bottom_tab_bar_view_model.dart';
 import 'package:develop_design_system/DesignSystem/shared/styles.dart';
-import 'package:develop_design_system/Views/Login/login.dart';
+import 'package:develop_design_system/Scenes/Profile/profile_router.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
-  ProfilePage({super.key});
+  String userEmail;
+  ProfilePage({super.key, required this.userEmail});
 
   final List functions = [
     'Edit Name',
@@ -50,21 +51,23 @@ class ProfilePage extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  const SizedBox(width: 8,),
-                  const Column(
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Amanda Doe',
-                        style: TextStyle(
+                        userEmail,
+                        style: const TextStyle(
                           fontFamily: 'Inter',
                           color: Colors.black,
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text(
+                      const Text(
                         'amanda@gmail.com',
                         style: TextStyle(
                           fontFamily: 'Inter',
@@ -79,33 +82,27 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 32),
-            ...functions.map((name) => Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        name,
-                        style: paragraph1Regular
-                      ),
-                      const Icon(Icons.arrow_forward_ios_rounded)
-                    ],
-                  ),
-                ),
-              ],
-            )).toList(),
+            ...functions
+                .map((name) => Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(name, style: paragraph1Regular),
+                              const Icon(Icons.arrow_forward_ios_rounded)
+                            ],
+                          ),
+                        ),
+                      ],
+                    ))
+                .toList(),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LoginPage(),
-                    ),
-                  );
+                  ProfilePageRouter.logout(context);
                 },
                 child: Text(
                   'Logout',
@@ -119,28 +116,27 @@ class ProfilePage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomTabBar.instantiate(
-        currentIndex: 3,
-        viewModel: BottomTabBarViewModel(
-          bottomTabs: [
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Home",
-            ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.message),
-              label: "Messages",
-            ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.label),
-              label: "Label",
-            ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: "Profile",
-            )
-          ],
-        )
-      ),
+          currentIndex: 3,
+          viewModel: BottomTabBarViewModel(
+            bottomTabs: [
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: "Home",
+              ),
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.message),
+                label: "Messages",
+              ),
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.label),
+                label: "Label",
+              ),
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                label: "Profile",
+              )
+            ],
+          )),
     );
   }
 }
