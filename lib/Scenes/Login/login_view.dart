@@ -19,8 +19,21 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  bool isLoading = false;
+  Map<String, String>? userData; 
   @override
   Widget build(BuildContext context) {
+
+    if (userData != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        final Map<String, String> dataToPass = userData!;
+        setState(() {
+          userData = null;
+        });
+        LoginPageRouter.goToProfilePage(context, dataToPass);
+      });
+    }
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(32.0),
@@ -92,18 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                 size: ActionButtonSize.large,
                 text: 'Login',
                 isLoading: false,
-                onPressed: () async {
-                  try {
-                    // ignore: unused_local_variable
-                    Map<String, dynamic> userData = await LoginService.fetchLogin(
-                    emailController.text,
-                    passwordController.text,
-                  );
-                  // ignore: use_build_context_synchronously
-                  LoginPageRouter.goToProfilePage(context, emailController.text);
-                  } catch (e) {
-                    //ERRO
-                  }
+                onPressed: () {
                 }
               ),
             ),
@@ -125,8 +127,33 @@ class _LoginPageState extends State<LoginPage> {
                   size: ActionButtonSize.small,
                   text: 'Sign Up',
                   isLoading: false,
-                  onPressed: () {
-                     LoginPageRouter.goToSignupPage(context);
+                  onPressed: () async {
+                    if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Preencha todos os campos"))
+                      );
+                      return;
+                    }
+
+                    setState(() {
+                      isLoading = true;
+                    });
+
+                    try {
+                      Map<String, String> fetchedUserData = await LoginService.fetchLogin(emailController.text, passwordController.text);
+                      setState(() {
+                        isLoading = false;
+                        userData = fetchedUserData;
+                      });
+                    } catch (e) {
+                      setState(() {
+                        isLoading = false;
+                      });
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Erro"))
+                      );
+                    }
                   }
                 ),
               ),

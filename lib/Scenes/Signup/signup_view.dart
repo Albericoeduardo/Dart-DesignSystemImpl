@@ -19,6 +19,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController passwordController = TextEditingController();
 
   bool acceptedTerms = false;
+  Map<String, String>? userData;
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +131,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   text: 'Login',
                   isLoading: false,
                   onPressed: () {
-                    SignupPageRouter.login(context);
+                    SignupPageRouter.login(context, userData!);
                   }
                 ),
               ),

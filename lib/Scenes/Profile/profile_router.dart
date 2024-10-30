@@ -5,7 +5,7 @@ class ProfilePageRouter {
   static void logout(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => LoginPageFactory.create('', ''))
+      MaterialPageRoute(builder: (context) => LoginPageFactory.create('' as Map<String, String>))
     );
   }
 }

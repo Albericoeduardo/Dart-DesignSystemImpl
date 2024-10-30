@@ -3,10 +3,10 @@ import 'package:develop_design_system/Scenes/Signup/signup_factory.dart';
 import 'package:flutter/material.dart';
 
 class LoginPageRouter {
-  static void goToProfilePage(BuildContext context, userEmail) {
+  static void goToProfilePage(BuildContext context, Map<String, String> userData) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ProfilePageFactory.create(userEmail))
+      MaterialPageRoute(builder: (context) => ProfilePageFactory.create(userData))
     );
   }
 

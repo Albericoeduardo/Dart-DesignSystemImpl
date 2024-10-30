@@ -1,7 +1,7 @@
 import 'dart:async';
 
 class LoginService {
-  static Future<Map<String, dynamic>> fetchLogin(String usr, String pwd) async {
+  static Future<Map<String, String>> fetchLogin(String usr, String pwd) async {
     // Simula um delay de 2 segundos para representar o tempo de resposta da API
     await Future.delayed(const Duration(seconds: 2));
 
@@ -9,7 +9,7 @@ class LoginService {
     // Neste exemplo, vamos assumir que qualquer usuário e senha são válidos
 
     // Simula uma resposta da API com dados fictícios do usuário
-    Map<String, dynamic> response = {
+    Map<String, String> response = {
       'name': 'João Silva',
       'email': 'joao.silva@example.com',
       'phone': '+55 11 91234-5678',
